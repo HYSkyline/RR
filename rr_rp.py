@@ -56,18 +56,13 @@ try:
 		minutes_now = time.strftime('%H:%M:%S',time.localtime(time.time()))
 		# 写入文件
 		print "Link Report:"
-		fpath = r"F:\application\python\renpin"			# 输入文件保存目录
-		fname = str(time_now)+'.txt'			# 输入文件名称与格式
-		filefull=fpath+"\\"+fname			# 构建完整的文件路径名称
-		f=open(filefull,'a')			# 以追加模式打开文件，准备输入今天的信息
+		fpath = r"F:\application\python\RR\rr_rp_result.txt"			# 输入文件保存信息
+		f=open(fpath,'a')			# 以追加模式打开文件，准备输入今天的信息
 		for each in renpin_list:			#按人品列表中的各项数据进行循环
-			f.writelines((each[0].decode('utf-8')).encode('gb18030')+"\tscore:\t"+str(each[1])+ "\t" + str(minutes_now))			# 写入各项数据(列表为二维，第一维为人名，第二维为人品值)
+			f.writelines((each[0].decode('utf-8')).encode('gb18030')+"\tscore:\t"+str(each[1])+ "\t" + str(minutes_now) + "\t" + str(time_now))			# 写入各项数据(列表为二维，第一维为人名，第二维为人品值)
 			print each[0].decode('utf-8') + '\t' + 'score:' + each[1] + '\tdetected.'
 			f.writelines('\n')			# writelines没有自动换行功能，因此手动写入换行符
 		f.close()			# 关闭文件，程序执行完成
-		# print '\n'
-		
-
     except Exception as ee:
         print u"RP值读取失败:" + str(ee)
 except Exception as e:
