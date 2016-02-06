@@ -7,9 +7,6 @@ import re
 import time
 import sys
 from PIL import Image
-
-import pdb
-
 import smtplib
 from email.mime.text import MIMEText
 
@@ -191,7 +188,13 @@ class RR_rp():			# 创建对应人人账号类，包含帐户名、密码、人�
 			try:
 				print each[0].decode('utf-8') + '\t' + 'score:' + each[1] + '\tdetected.'
 			except UnicodeEncodeError as eee:			# 目标ID中包含复杂字符
-				print u"字符无法在cmd环境下输出(已写入txt文件)"
+				try:
+					print each[0][:9].decode('utf-8') + '\t' + 'score:' + each[1] + '\tdetected.'
+				except UnicodeEncodeError as eeee:
+					try:
+						print each[0][:6].decode('utf-8') + '\t' + 'score:' + each[1] + '\tdetected.'
+					except UnicodeEncodeError as eeeee:
+						print u"字符无法在cmd环境下输出(已写入txt文件)"
 		print u"程序运行时长:%.3f" % float(self.time_cost) + "s."			# 输出程序运行时长
 		if self.mail_check:			# 报告通知是否发出
 			print u"通知已发出."
@@ -203,5 +206,6 @@ if __name__ == '__main__':
 	password = raw_input('密码:'.decode('utf-8').encode('gbk'))			# 输入从网密码
 	mail_from = raw_input('邮箱(仅支持QQ、163、126、Gmail邮箱)'.decode('utf-8').encode('gbk'))			# 输入通知发起账户
 	mail_password = raw_input('邮箱密码'.decode('utf-8').encode('gbk'))			# 通知通知发起密码
+
 	rr_rp = RR_rp(username, password, mail_from, mail_password)			# 构建从网账户对象
 	rr_rp.main()			# 调用程序主体
