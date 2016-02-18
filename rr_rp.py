@@ -68,9 +68,9 @@ class RR_rp():			# 创建对应人人账号类，包含帐户名、密码、人�
 		print "Link Logout."
 	
 	def login(self, url):			# 登录个人主页
-		# self.code_checkin()
+		self.code_checkin()
 		self.icode = ""
-		# print u'验证码确认:' + str(self.checkcode)
+		print u'验证码确认:' + str(self.checkcode)
 		postdata = {
 			'email': self.email,
 			'password': self.password,
