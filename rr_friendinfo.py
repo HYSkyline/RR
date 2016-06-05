@@ -36,7 +36,7 @@ def main():			# 程序主体函数
 	shutdown_check = raw_input("程序完成后是否自动关机？输入任意内容确认关机,直接回车则不关机.".decode('utf-8').encode('gbk'))			# 确定程序运行完毕后是否自动关机
 	threadnum = input('输入线程数:'.decode('utf-8').encode('gbk'))			# 输入创建的线程数量
 	
-	data_check(email, password, mail_from, mail_password, mail_to, shutdown_check, init=init_id, final=final_id, ranger=ranger)			# 数据确认环节,程序正式运行前最后一次退出机会
+	data_check(email, password, mail_from, mail_password, mail_to, shutdown_check)			# 数据确认环节,程序正式运行前最后一次退出机会
 	
 	print "Link Start!"			# 开始连接！
 	print "--" * 10			# 分割线
